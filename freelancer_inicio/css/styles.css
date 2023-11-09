@@ -1,0 +1,370 @@
+:root {
+ --blanco:#ffffff;
+ --oscuro: #212121;
+ --primario: #ffc107;
+ --secundario: #0097A7;
+ --gris: #757575;
+ --grisClaro: #dfe9f3;
+}
+
+/*Siempre agregar al principio del css despues de root*/
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+    scroll-snap-type: y proximity; /*"y mandatory" es para que el scroll-snap funcione de arriba hacia abajo y "x mandatory" es para que se desplace a los lados */
+    }
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+/*Scroll Snap*/
+.servicios,
+.navegacion-principal,
+.formulario {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;
+}
+
+body {
+    font-size: 16px;
+    font-family: 'Krub', sans-serif;
+    background-color: cornflowerblue;
+    /*Primero especificamos donde debe de ir el degradado
+    en este caso de abajo hacia arriba.
+    Despues especificamos cual será el primer color (el de abajo porque es de abajo hacia arriba).
+    El "0%" es para indicar que el color "#dfe9f3" comenzará hasta abajo.
+    Establecemos hacia que color va a ir.
+    El "100%" es para indicar que el color se establecerá hasta arriba*/
+    background-image: linear-gradient(to top, var(--grisClaro) 0%, var(--blanco));
+}
+
+h1 {
+    /*Especifica la dimension de la letra*/
+    font-size: 3.8rem;
+}
+
+h2 {
+    font-size: 2.8rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
+h1,h2,h3 {
+    text-align: center;
+}
+
+/*.titulo {
+    text-align: center;
+    1 rem = 10px
+    * Especifica la dimension de la letra
+    font-size: 3.8rem; 
+    
+    * Grosor de la letra
+    font-weight: bold;
+}*/
+
+
+.titulo span {
+    /* Especifica la dimension de la letra*/
+    font-size: 2rem;
+}
+
+.contenedor {
+    /*Ancho del contenedor*/
+    max-width: 120rem;
+    /*Agrega separciones: arriba, derecha, abajo e izquierda*/
+    /*margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: auto; */
+    /*Podemos ahorrarnos todo lo de arriba con el siguiente código*/
+    margin: 0 auto 0 auto;
+}
+
+.boton {
+    background-color: var(--secundario);
+    color: var(--blanco);
+    /*El primer rem es para arriba y abajo, el segundo rem es para
+    izquierda y derecha*/
+    padding: 1rem 3rem;
+    /*Otorga margen de separación del botón hacia afuera*/
+    margin-top: 3rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    /*Ancho de la letra*/
+    font-weight: bold;
+    /*Borde del boton*/
+    border-radius: .5rem;
+    /*Ancho del boton*/
+    width: 90%;
+    text-align: center;
+    border: none;
+
+}
+
+@media (min-width: 768px) {
+    .boton {
+        /*El auto del width hace que cuando la
+        pantalla sea de 768px se reinicie el ancho
+        del boton y tome más espacio*/
+        width: auto;
+    }
+}
+
+/*Nos sirve para modificar el efecto que tendrá un objeto cuando se flota sobre el.*/
+.boton:hover {
+    /*Cuando el cursor pase por encima del boton del formulario el puntero se cambiará a una mano que selecciona*/
+    cursor: pointer;
+}
+
+.sombra {    
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(38,33,38,0.54);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(38,33,38,0.54);
+    box-shadow: 0px 5px 15px 0px rgba(38,33,38,0.54);
+    /*Dentro de la sombra agregamos un color blanco de fondo*/
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+/*Utilidades*/
+.w-100 {
+    width: 100%;
+}
+
+.flex {
+
+}
+
+.alinear-derecha {
+
+}
+
+/*Navegación Principal*/
+.nav-bg {
+    background-color: var(--secundario);
+}
+
+.navegacion-principal {
+    display: flex;
+    /*Los links se organizan de arriba hacia abajo*/
+    flex-direction: column;
+}
+
+/*Cuando la pantalla sea menor al pixelaje indicado "column" cambiara a "row"*/
+@media (min-width: 768px) {
+    .navegacion-principal {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.navegacion-principal a {
+    display: block;
+    text-align: center;
+    color: var(--blanco);
+    padding: 1rem;
+    /*Anulamos la linea de los links*/
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: 700;
+ }
+
+ /*Esta es una pseudoclase y se usa para darle brillo
+ a la palabra del link cuando el cursor se sobrepone en ella*/
+ .navegacion-principal a:hover {
+    background-color: #ffc107;
+    /*Hace aparecer el texto del link en color negro
+    cuando el cursor se sobre pone*/
+    color: var(--oscuro)
+ }
+
+/*Lo usamos para poner una imagen de fondo*/
+/*".." Los dos puntos dentro de los parentesis nos sirven para salir de una carpeta 
+(en este caso la carpeta es "css") y poder entrar a otra (en este caso es "img") */
+ .hero {
+    background-image: url(../img/hero.jpg) ;
+    /*Hacemos que la imagen deje de repetirse de forma horizontal*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 450px;
+    /*La clase padre (hero) debe de tener posicion relativa
+    Si no establecemos como clase padre "hero" entonces
+    ".contenido-hero" tomará todo el documento como padre*/
+    position: relative;
+    /*Alejamos la clase "hero" 20 pixeles de la clase ".sombra" con un margen para dar un espacio entre ellos*/
+    margin-bottom: 2rem;
+}
+
+.contenido-hero {
+    /*La clase hijo (contenido-hero) debe de tener posicion absoluta*/
+    position: absolute;
+    background-color: rgba(0, 0, 0, .4); /*Sintaxis antigua
+    para controlar la sombra dentro de un contenedor (en este caso .contenido-hero)*/
+    background-color: rgb(0 0 0 /70%); /*Sintaxis nueva*/
+    width: 100%;
+    height: 100%;
+    /*El siguiente codigo funciona para alinear horizontal y verticalmente*/
+    /*Coloca todo el contenido de izquierda a derecha*/
+    display: flex;
+    /*Coloca el contenido de arriba hacia abajo*/
+    flex-direction: column;
+    /*Centra el contenido horizontalmente*/
+    align-items: center;
+    /*Centra el contenido verticalmente*/
+    justify-content: center;
+}
+
+.contenido-hero h2,
+.contenido-hero p {
+color: var(--blanco);
+}
+
+.contenido-hero .ubicacion{
+    display: flex;
+    align-items: flex-end;
+}
+
+/*Servicios*/
+@media (min-width: 768px) {
+    
+    .servicios {
+        display: grid;
+        /*"repeat(3, 1fr);" nos indica que 3 columnas tomaran una fracción del total del espacio*/
+        grid-template-columns: repeat(3, 1fr);
+        /*Sirve para crear la separación entre columnas*/
+        column-gap: 1rem;
+        /*Formamos 3 columnas, indicamos con "1fr, 1fr, 1fr" que el total del espacio de ".servicios" sea dividido en 3 fracciones y que cada columna tome una fracción,
+        tambien podemos usar porcentajes 
+        grid-template-columns: 1fr, 1fr, 1fr;*/
+    
+        /*Definimos el segmento de arriba de 200px y el de abajo de 800px
+        Definimos 2 columnas de 300 pixeles de ancho cada una
+        grid: 200px 800px / 300px 300px;*/
+
+        /*Ejemplo largo del "grid: 200px 800px / 300px 300px"
+        grid-template-rows: 200px 800px;
+        grid-template-columns: 300px 300px;*/
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3 {
+    color: var(--secundario);
+    font-weight: normal;
+}
+
+.servicio p {
+    /*Interlineado*/
+    line-height: 2;
+    text-align: center;
+
+}
+
+.servicio .iconos {
+    height: 15rem;
+    width: 15rem;
+    background-color: var(--primario);
+    /* El "background-color: var(--primario);" nos da como defecto un cuadro de color amarillo, 
+    si agregamos un "border-radius: 50%;" podremos crear un circulo con el color del cuadro del background*/
+    border-radius: 50%;
+    /*Alineamos los iconos en los circulos con este set de valores*/
+    /*Los elementos se distribuirán de izquierda a derecha porque queda como defecto row.*/
+    display: flex;
+    /*Lo usamos para alinear el contenido cuando lo colocamos horizontalmente*/
+    justify-content: space-evenly;
+    /*Lo usamos para alinear el contenido verticalmente.*/
+    align-items: center;
+}
+
+/*Contacto*/
+.formulario {
+    background-color: var(--gris);
+    /*Min lo que hace es tomar el valor más pequeño en comparación al 100% del formulario,
+    por ejemplo: si el 100% del formulario son 1,000px min tomará los 600px establecidos en los 60rem y en caso contrario
+    si el 100% del formulario son 400px entonces min tomará los 400 px del 100% en lugar de los 60rem prestablecidos
+    (Si el 100% sobrepasa los 60rem entonces min tomará los 60rem, si el 100% es menor a los 60rem entonces no tomará los 60rem sino el valor
+    del 100% que es menor a los 60rem)*/
+    width: min(60rem, 100%);
+    /*Centrara el formulario horizontalmente*/
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 2rem;
+}
+
+/*"fieldset" es una subclase que viene por defecto en la etiqueta "<legend>"*/
+.formulario fieldset{
+    /*Elimina la linea que forma el cuadrado de la caja que encierra los elementos*/
+    border: none;
+}
+
+.formulario legend { 
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--primario);
+}
+
+@media (min-width: 768px) {
+    .contenedor-campos {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /*"repeat(2, 1fr)" es para indicar que cada columna va a tomar 5o% y 50%*/
+        grid-template-rows: auto auto 20rem;
+        column-gap: 1rem;
+    }
+    .campo:nth-child(3),
+    .campo:nth-child(4) { /*"nth-child" Es un pseudoselector que nos ayuda a seleccionar entre varias clases con el mismo nombre*/
+        grid-column: 1 / 3; /*Para posicionar un elemento, aqui le estamos indicando que el campo 3 tiene que ir del punto 1 al 3*/
+    } 
+
+}
+
+.campo {
+    margin-bottom: 1rem;
+}
+
+.campo label {
+    color: var(--blanco);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    /*Hace que cada "label" tome todo el espacio disponible, como si tomara todo el espacio del renglón*/
+    display: block;
+}
+
+.campo input[type="text"] {
+    background-color: white;
+}
+
+/*Los "input" tienen un selector de atributo ("[type="text"]") estos nos sirven para que el css solo se aplique a ese input en especifico
+(en este caso los de tipo "text")*/
+
+.campo textarea {
+    height: 20rem;
+
+}
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+
+}
+
+.enviar .boton {
+    width: 100%;
+}
+
+/*Footer */
+.footer {
+    text-align: center;
+}
